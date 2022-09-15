@@ -20,7 +20,7 @@
         $stmt = $conn->prepare("insert into users(username,email,password) values(?,?,?)");
         $stmt ->bind_param("sss",$username, $email, $password);
         $stmt -> execute();
-        echo "Registered in successfully!";
+        header('location: ../Homepage/index.html');
         $stmt -> close();
         $conn -> close();
     }

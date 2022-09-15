@@ -16,7 +16,8 @@
     else{
         $query = "SELECT * FROM users WHERE `username` = '$username' AND `password` = '$password';";
         $result = mysqli_query($conn, $query);
-        echo "Login successful!";
+        //echo "Login successful!";
+        header('location: ../Homepage/index.html');
         $conn -> close();
 
     }
