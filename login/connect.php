@@ -1,9 +1,13 @@
 <?php
 
-    $username = $_POST['username'];
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-
+    $username = '';
+    $email = '';
+    $password = '';
+    if(isset($_POST['submit'])){
+        $username=$_POST['username'];
+        $email=$_POST['email'];
+        $password=$_POST['password'];
+    }
 
     $conn = new mysqli('localhost','root','','spl');
 
@@ -11,10 +15,12 @@
         die('Connection Failed : ' .$conn->connect_error);
     }
     else{
+        // $SQL="INSERT INTO `users`(`username`, `email`, `password`) VALUES ('$username','$email','$password')";
+        // $result=mysqli_query($conn,$SQL);
         $stmt = $conn->prepare("insert into users(username,email,password) values(?,?,?)");
         $stmt ->bind_param("sss",$username, $email, $password);
         $stmt -> execute();
-        echo "Logged in successfully!";
+        echo "Registered in successfully!";
         $stmt -> close();
         $conn -> close();
     }
